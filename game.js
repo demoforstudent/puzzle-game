@@ -1,7 +1,20 @@
+/*
+Created by: Nguyen Anh Tuan
+Last Modified by: Vu Dinh Khoi
+Created on: 24/11/2014
+Last Modified: 12/11/2015
+
+Version 3
+Modified by Vu Dinh Khoi
+Description: sử dụng jQuery
+*/
+// Put jQuery in external js file
+
+
 var max = 16;
 // Mảng lưu đường dẫn các hình
 var imagePaths = ['images/1.png','images/2.png','images/3.png','images/4.png','images/5.png','images/6.png','images/7.png','images/8.png'];
-var blank = 'images/blank.png'; // Đường dẫn hình nền			
+var blank = 'images/blank.png'; // Đường dẫn hình nền
 var previousClick; // Vị trí hình mở lần đầu
 var randomPosition = []; // Lưu vị trí ngẫu nhiên các hình
 var imageStatus = []; // Lưu trạng thái các hình. -1: disable, 0: chưa click, 1: click một lần
@@ -11,17 +24,20 @@ var moves = 0; // Số lần mở hình
 
 // Khởi tạo game mới
 function newGame()
-{ 	
+{
 	attempt = 0;
 	score = 0;
 	moves = 0;
-	document.getElementById('GameScore').innerHTML = score;
-	document.getElementById('GameMoves').innerHTML = moves;			
-	// Load các hình nền
+	//document.getElementById('GameScore').innerHTML = score;
+	//document.getElementById('GameMoves').innerHTML = moves;
+	document.getElementById("GameScore").textContent = score;
+	document.getElementById("GameMoves").textContent = moves;
+
+    // Load các hình nền
 	for( var i = 0; i < max; i++)
 	{
 		document.images[i].src = blank;
-	}				
+	}
 	// Trạng thái các hình
 	for (var i = 0; i < max; i++)
 	{
@@ -35,7 +51,7 @@ function newGame()
 	}
 	// Hoán vị ngẫu nhiên các index hình
 	for (var i = 0; i < max; i++)
-	{	
+	{
 		var temp, r;
 		r = Math.round(Math.random()*(max-1)); // r=0..15
 		temp = randomPosition[i]; // Do hoán vị nhiều lần, nên chỉ số i phải modulo max
@@ -45,34 +61,35 @@ function newGame()
 }
 
 function imageClicked()
-{	
+{
 	// Lấy id của đối tượng image vừa click
 	var i = this.id;
 	// Nếu hình này đã mở rồi (trạng thái disable)
 	if (imageStatus[i] == -1)
 	{
 		return;
-	}				
-	
+	}
+
 	// Xử lý click hình lần đầu
 	if (attempt == 0)
 	{
 		var imageIndex = randomPosition[i]; // đường dẫn hình
 		this.src = imagePaths[imageIndex];
-		document.getElementById('GameMoves').innerHTML = ++moves; // Lưu ý: tăng move rồi gán (khác với moves++)
-		previousClick = i;						
+		//document.getElementById('GameMoves').innerHTML = ++moves; // Lưu ý: tăng move rồi gán (khác với moves++)
+		document.getElementById("GameMoves").textContent = ++moves;
+		previousClick = i;
 		attempt = 1;
 		return;
 	}
-	
+
 	// Xử lý click hình lần 2
 	if(attempt == 1)
-	{					
+	{
 		if (i != previousClick)
 		{
 			var imageIndex = randomPosition[i];
 			this.src = imagePaths[imageIndex];
-			
+
 			if (randomPosition[i] != randomPosition[previousClick]) // 2 hình khác nhau
 			{
 				setTimeout(function()
@@ -88,28 +105,30 @@ function imageClicked()
 			}
 			else // 2 hình giống nhau
 			{
-				document.getElementById('GameScore').innerHTML = ++score;
-				imageStatus[previousClick] = imageStatus[i] = -1; // 2 hình này đã mở rồi nên disable
+				//document.getElementById('GameScore').innerHTML = ++score;
+			    document.getElementById("GameScore").textContent = ++score;
+			    imageStatus[previousClick] = imageStatus[i] = -1; // 2 hình này đã mở rồi nên disable
 				if (score == max/2)
 				{
 					alert("Congratulation. You win!!!");
 				}
 			}
-			document.getElementById('GameMoves').innerHTML = ++moves;
+			//document.getElementById('GameMoves').innerHTML = ++moves;
+			document.getElementById("GameMoves").textContent = ++moves;
 			attempt = 0;
 		}
 		else
 		{
 			return;
-		}			
-	}			
+		}
+	}
 }
 
 // Hàm initialize() được gọi một lần duy nhất khi load form
 function initialize()
 {
 	for (var i = 0; i < max; i++)
-	{			
+	{
 		var x = document.getElementById(i);
 		x.width = 100;
 		x.height = 100;
