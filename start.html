@@ -1,56 +1,60 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <!--
 	Created by: Vu Dinh Khoi
 	Last modified by: Vu Dinh Khoi
 	Created on: 24/11/2014
 	Last Modified: 25/11/2014
+
+    Version 2
+    Modified by Vu Dinh Khoi
+    Description: sử dụng HTML 5
 -->
 <html>
 	<head>
-		<title>Puzzle Game (ver. beta)</title>		
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="styles.css" />
+		<title>Puzzle Game (ver. 1.0)</title>		
 	</head>
 	<body onload='initialize()'>
-		<center>
-		<h1><font color='Cyan'>The Puzzle Game (ver. beta)</font></h1>
+		<h1>The Puzzle Game (ver. 1.0)</h1>
 		<hr>
 		<form>			
 			<table>
 				<tr>
-					<td><img id='0'></td>
-					<td><img id='1'></td>
-					<td><img id='2'></td>
-					<td><img id='3'></td>
+					<td><img id='0' src="images/blank.png"></td>
+					<td><img id='1' src="images/blank.png"></td>
+					<td><img id='2' src="images/blank.png"></td>
+					<td><img id='3' src="images/blank.png"></td>
 				</tr>
 				<tr>					
-					<td><img id='4'></td> 
-					<td><img id='5'></td>
-					<td><img id='6'></td>
-					<td><img id='7'></td>
+					<td><img id='4' src="images/blank.png"></td> 
+					<td><img id='5' src="images/blank.png"></td>
+					<td><img id='6' src="images/blank.png"></td>
+					<td><img id='7' src="images/blank.png"></td>
 					<td width="10%"></td>
 					<td align='center'><Font color='Blue' size=30>Score</Font></td>
 					<td width="5%"></td>
 					<td align='center'><Font color='Blue' size=30>Moves</Font></td>
 				</tr>
 				<tr>
-					<td><img id='8'></td>
-					<td><img id='9'></td>
-					<td><img id='10'></td>
-					<td><img id='11'></td>					
+					<td><img id='8' src="images/blank.png"></td>
+					<td><img id='9' src="images/blank.png"></td>
+					<td><img id='10' src="images/blank.png"></td>
+					<td><img id='11' src="images/blank.png"></td>					
 					<td width="10%"></td>
 					<td align='center'><Font color='Red' size =6><p id='GameScore'>0</p></Font></td>
 					<td width="5%"></td>
 					<td align='center'><Font color='Red' size =6><p id='GameMoves'>0</p></Font></td>
 				</tr>
 				<tr>
-					<td><img id='12'></td>
-					<td><img id='13'></td>
-					<td><img id='14'></td>
-					<td><img id='15'></td>
+					<td><img id='12' src="images/blank.png"></td>
+					<td><img id='13' src="images/blank.png"></td>
+					<td><img id='14' src="images/blank.png"></td>
+					<td><img id='15' src="images/blank.png"></td>
 				</tr>
 			</table>
 			<input type='button' value='New Game' onclick="newGame()">
 		</form>
-		</center>
 		<script type="text/javascript" src="game.js"></script>		
 	</body>
 </html>

@@ -1,3 +1,13 @@
+/*
+Created by: Nguyen Anh Tuan
+Last Modified by: Vu Dinh Khoi
+Created on: 24/11/2014
+Last Modified: 12/11/2015
+
+Version 2
+Modified by Vu Dinh Khoi
+Description: thay đổi một số method của JavaScript mới & sử dụng jQuery
+*/
 var max = 16;
 // Mảng lưu đường dẫn các hình
 var imagePaths = ['images/1.png','images/2.png','images/3.png','images/4.png','images/5.png','images/6.png','images/7.png','images/8.png'];
@@ -15,9 +25,12 @@ function newGame()
 	attempt = 0;
 	score = 0;
 	moves = 0;
-	document.getElementById('GameScore').innerHTML = score;
-	document.getElementById('GameMoves').innerHTML = moves;			
-	// Load các hình nền
+	//document.getElementById('GameScore').innerHTML = score;
+	//document.getElementById('GameMoves').innerHTML = moves;			
+	document.getElementById("GameScore").textContent = score;
+	document.getElementById("GameMoves").textContent = moves;
+    
+    // Load các hình nền
 	for( var i = 0; i < max; i++)
 	{
 		document.images[i].src = blank;
@@ -59,8 +72,9 @@ function imageClicked()
 	{
 		var imageIndex = randomPosition[i]; // đường dẫn hình
 		this.src = imagePaths[imageIndex];
-		document.getElementById('GameMoves').innerHTML = ++moves; // Lưu ý: tăng move rồi gán (khác với moves++)
-		previousClick = i;						
+		//document.getElementById('GameMoves').innerHTML = ++moves; // Lưu ý: tăng move rồi gán (khác với moves++)
+		document.getElementById("GameMoves").textContent = ++moves;
+		previousClick = i;
 		attempt = 1;
 		return;
 	}
@@ -88,14 +102,16 @@ function imageClicked()
 			}
 			else // 2 hình giống nhau
 			{
-				document.getElementById('GameScore').innerHTML = ++score;
-				imageStatus[previousClick] = imageStatus[i] = -1; // 2 hình này đã mở rồi nên disable
+				//document.getElementById('GameScore').innerHTML = ++score;
+			    document.getElementById("GameScore").textContent = ++score;
+			    imageStatus[previousClick] = imageStatus[i] = -1; // 2 hình này đã mở rồi nên disable
 				if (score == max/2)
 				{
 					alert("Congratulation. You win!!!");
 				}
 			}
-			document.getElementById('GameMoves').innerHTML = ++moves;
+			//document.getElementById('GameMoves').innerHTML = ++moves;
+			document.getElementById("GameMoves").textContent = ++moves;
 			attempt = 0;
 		}
 		else
